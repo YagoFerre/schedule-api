@@ -17,7 +17,7 @@ func ConnectDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&entities.Agendamento{})
+	err = db.AutoMigrate(&entities.AgendamentoEntity{})
 	if err != nil {
 		fmt.Printf("PostgreSQL automigrate error: %v", err)
 		return nil, err

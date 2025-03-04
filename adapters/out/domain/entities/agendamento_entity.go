@@ -2,7 +2,7 @@ package entities
 
 import "time"
 
-type Agendamento struct {
+type AgendamentoEntity struct {
 	ID                  uint      `json:"id" gorm:"primaryKey;autoIncrement"`
 	Destinatario        string    `json:"destinatario"`
 	DataHoraEnvio       time.Time `json:"dataHoraEnvio"`
