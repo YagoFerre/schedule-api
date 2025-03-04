@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"schedule-api/domain/model"
+	"schedule-api/adapters/out/domain/entities"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,7 +17,7 @@ func ConnectDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&model.Agendamento{})
+	err = db.AutoMigrate(&entities.Agendamento{})
 	if err != nil {
 		fmt.Printf("PostgreSQL automigrate error: %v", err)
 		return nil, err
