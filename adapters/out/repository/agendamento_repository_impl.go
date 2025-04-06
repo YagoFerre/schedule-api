@@ -18,16 +18,13 @@ type agendamentoRepository struct {
 	database *gorm.DB
 }
 
-func (r *agendamentoRepository) Create(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
-	result := r.database.Create(&agendamentoModel)
+func (r *agendamentoRepository) Create(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	result := r.database.Create(agendamentoModel)
 	if result.Error != nil {
-		return &model.AgendamentoModel{}, &rest_errors.RestErr{
-			Message: "Falha ao salvar agendamento",
-			Code:    500,
-		}
+		return nil, rest_errors.NewBadRequestError("Erro ao salvar agendamento")
 	}
 
-	return &agendamentoModel, nil
+	return agendamentoModel, nil
 }
 
 func (r *agendamentoRepository) FindById(id int) (*model.AgendamentoModel, *rest_errors.RestErr) {
@@ -41,4 +38,4 @@ func (r *agendamentoRepository) FindById(id int) (*model.AgendamentoModel, *rest
 	return agendamentoModel, nil
 }
 
-func (r *agendamentoRepository) Update(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr)
+func (r *agendamentoRepository) Update(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr)
