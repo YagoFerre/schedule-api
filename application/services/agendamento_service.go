@@ -17,14 +17,14 @@ type agendamentoService struct {
 	agendamentoRepository repository.AgendamentoRepository
 }
 
-func (au *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
-	return au.agendamentoRepository.AgendarEnvioNotificacao(agendamentoModel)
+func (as *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	return as.agendamentoRepository.Create(agendamentoModel)
 }
 
-func (au *agendamentoService) ExecuteConsultarEnvioNotificacao(id int) (*model.AgendamentoModel, *rest_errors.RestErr) {
-	return au.agendamentoRepository.ConsultarEnvioNotificacao(id)
+func (as *agendamentoService) ExecuteConsultarEnvioNotificacao(id int) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	return as.agendamentoRepository.FindById(id)
 }
 
-func (au *agendamentoService) ExecuteCancelarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
-	return au.agendamentoRepository.CancelarEnvioNotificacao(agendamentoModel)
+func (as *agendamentoService) ExecuteCancelarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	return as.agendamentoRepository.Update(agendamentoModel)
 }

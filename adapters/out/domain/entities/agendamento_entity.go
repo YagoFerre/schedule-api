@@ -1,6 +1,8 @@
 package entities
 
-import "time"
+import (
+	"time"
+)
 
 type AgendamentoEntity struct {
 	ID                  uint      `json:"id" gorm:"primaryKey;autoIncrement"`
