@@ -17,7 +17,7 @@ type agendamentoService struct {
 	agendamentoRepository repository.AgendamentoRepository
 }
 
-func (as *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+func (as *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
 	return as.agendamentoRepository.Create(agendamentoModel)
 }
 
@@ -25,6 +25,6 @@ func (as *agendamentoService) ExecuteConsultarEnvioNotificacao(id int) (*model.A
 	return as.agendamentoRepository.FindById(id)
 }
 
-func (as *agendamentoService) ExecuteCancelarEnvioNotificacao(agendamentoModel model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+func (as *agendamentoService) ExecuteCancelarEnvioNotificacao(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
 	return as.agendamentoRepository.Update(agendamentoModel)
 }
