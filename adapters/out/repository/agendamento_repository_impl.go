@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"schedule-api/application/domain/model"
 	"schedule-api/application/domain/port/out/repository"
 	"schedule-api/configuration/rest_errors"
@@ -20,6 +21,7 @@ type agendamentoRepository struct {
 
 func (r *agendamentoRepository) Create(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
 	result := r.database.Create(agendamentoModel)
+
 	if result.Error != nil {
 		return nil, rest_errors.NewBadRequestError("Erro ao salvar agendamento")
 	}
@@ -38,4 +40,14 @@ func (r *agendamentoRepository) FindById(id int) (*model.AgendamentoModel, *rest
 	return agendamentoModel, nil
 }
 
-func (r *agendamentoRepository) Update(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr)
+func (r *agendamentoRepository) Update(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	result := r.database.Model(agendamentoModel).Updates(agendamentoModel)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, rest_errors.NewNotFoundError("Agendamento não encontrado")
+	}
+	if result.Error != nil {
+		return nil, rest_errors.NewBadRequestError("Erro ao atualizar agendamento")
+	}
+
+	return agendamentoModel, nil
+}
