@@ -7,6 +7,7 @@ import (
 	"schedule-api/configuration/rest_errors"
 )
 
+// Impl Service usecases
 func NewAgandamentoService(agendamentoRepository repository.AgendamentoRepository) usecases.AgendamentoUseCases {
 	return &agendamentoService{
 		agendamentoRepository,
