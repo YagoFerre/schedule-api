@@ -18,17 +18,14 @@ type serviceMapper struct {
 	agendamentoUseCases usecases.AgendamentoUseCases
 }
 
-// HandleMapperAgendarEnvioNotificacao implements AgendamentoMapper.
 func (s *serviceMapper) HandleMapperAgendarEnvioNotificacao(agendamentoRequest *request.AgendamentoRequest) (*entities.AgendamentoEntity, *rest_errors.RestErr) {
 	panic("unimplemented")
 }
 
-// HandleMapperCancelarEnvioNotificacao implements AgendamentoMapper.
 func (s *serviceMapper) HandleMapperCancelarEnvioNotificacao(id uint) (*entities.AgendamentoEntity, *rest_errors.RestErr) {
 	panic("unimplemented")
 }
 
-// HandleMapperConsultarEnvioNotificacao implements AgendamentoMapper.
 func (s *serviceMapper) HandleMapperConsultarEnvioNotificacao(id uint) (*response.AgendamentoResponse, *rest_errors.RestErr) {
 	panic("unimplemented")
 }
