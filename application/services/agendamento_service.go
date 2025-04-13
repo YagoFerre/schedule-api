@@ -22,10 +22,15 @@ func (as *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel *m
 	return as.agendamentoRepository.Create(agendamentoModel)
 }
 
-func (as *agendamentoService) ExecuteConsultarEnvioNotificacao(id int) (*model.AgendamentoModel, *rest_errors.RestErr) {
+func (as *agendamentoService) ExecuteConsultarEnvioNotificacao(id uint) (*model.AgendamentoModel, *rest_errors.RestErr) {
 	return as.agendamentoRepository.FindById(id)
 }
 
-func (as *agendamentoService) ExecuteCancelarEnvioNotificacao(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+func (as *agendamentoService) ExecuteCancelarEnvioNotificacao(id uint) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	agendamentoModel := &model.AgendamentoModel{
+		ID:                id,
+		StatusNotificacao: model.Cancelado,
+	}
+
 	return as.agendamentoRepository.Update(agendamentoModel)
 }

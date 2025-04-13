@@ -29,7 +29,7 @@ func (r *agendamentoRepository) Create(agendamentoModel *model.AgendamentoModel)
 	return agendamentoModel, nil
 }
 
-func (r *agendamentoRepository) FindById(id int) (*model.AgendamentoModel, *rest_errors.RestErr) {
+func (r *agendamentoRepository) FindById(id uint) (*model.AgendamentoModel, *rest_errors.RestErr) {
 	agendamentoModel := &model.AgendamentoModel{}
 
 	result := r.database.First(&agendamentoModel, id)
