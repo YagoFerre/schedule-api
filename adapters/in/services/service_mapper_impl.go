@@ -1,6 +1,7 @@
 package services
 
 import (
+	"schedule-api/adapters/in/mapper"
 	"schedule-api/adapters/out/domain/entities"
 	"schedule-api/adapters/out/domain/request"
 	"schedule-api/adapters/out/domain/response"
@@ -19,13 +20,36 @@ type serviceMapper struct {
 }
 
 func (s *serviceMapper) HandleMapperAgendarEnvioNotificacao(agendamentoRequest *request.AgendamentoRequest) (*entities.AgendamentoEntity, *rest_errors.RestErr) {
-	panic("unimplemented")
+	agendamentoModel := mapper.ConvertRequestToModel(agendamentoRequest)
+
+	result, err := s.agendamentoUseCases.ExecuteAgendarEnvioNotificacao(&agendamentoModel)
+	if err != nil {
+		return nil, err
+	}
+
+	agendamentoEntity := mapper.ConvertModelToEntity(result)
+
+	return &agendamentoEntity, nil
 }
 
 func (s *serviceMapper) HandleMapperCancelarEnvioNotificacao(id uint) (*entities.AgendamentoEntity, *rest_errors.RestErr) {
-	panic("unimplemented")
+	result, err := s.agendamentoUseCases.ExecuteCancelarEnvioNotificacao(id)
+	if err != nil {
+		return nil, err
+	}
+
+	agendamentoEntity := mapper.ConvertModelToEntity(result)
+
+	return &agendamentoEntity, nil
 }
 
 func (s *serviceMapper) HandleMapperConsultarEnvioNotificacao(id uint) (*response.AgendamentoResponse, *rest_errors.RestErr) {
-	panic("unimplemented")
+	result, err := s.agendamentoUseCases.ExecuteConsultarEnvioNotificacao(id)
+	if err != nil {
+		return nil, err
+	}
+
+	agendamentoResponse := mapper.ConvertModelToResponse(result)
+
+	return &agendamentoResponse, nil
 }
