@@ -28,7 +28,6 @@ func (s *serviceMapper) HandleMapperAgendarEnvioNotificacao(agendamentoRequest *
 	}
 
 	agendamentoEntity := mapper.ConvertModelToEntity(result)
-
 	return &agendamentoEntity, nil
 }
 
@@ -39,7 +38,6 @@ func (s *serviceMapper) HandleMapperCancelarEnvioNotificacao(id uint) (*entities
 	}
 
 	agendamentoEntity := mapper.ConvertModelToEntity(result)
-
 	return &agendamentoEntity, nil
 }
 
@@ -50,6 +48,5 @@ func (s *serviceMapper) HandleMapperConsultarEnvioNotificacao(id uint) (*respons
 	}
 
 	agendamentoResponse := mapper.ConvertModelToResponse(result)
-
 	return &agendamentoResponse, nil
 }
