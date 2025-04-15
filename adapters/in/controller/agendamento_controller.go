@@ -2,7 +2,7 @@ package controller
 
 import (
 	"net/http"
-	"schedule-api/adapters/in/services"
+	"schedule-api/adapters/in/converters"
 	"schedule-api/adapters/out/domain/request"
 	"strconv"
 
@@ -16,14 +16,14 @@ type AgendamentoControlleInterface interface {
 	Cancelar(c *gin.Context)
 }
 
-func NewAgendamentoControllerInterface(serviceMapper services.AgendamentoMapper) AgendamentoControlleInterface {
+func NewAgendamentoControllerInterface(serviceMapper converters.AgendamentoMapper) AgendamentoControlleInterface {
 	return &agendamentoControllerInterface{
 		serviceMapper,
 	}
 }
 
 type agendamentoControllerInterface struct {
-	serviceMapper services.AgendamentoMapper
+	serviceMapper converters.AgendamentoMapper
 }
 
 func (a *agendamentoControllerInterface) AgendarEnvio(c *gin.Context) {

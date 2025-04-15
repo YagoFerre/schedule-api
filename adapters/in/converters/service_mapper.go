@@ -1,4 +1,4 @@
-package services
+package converters
 
 import (
 	"schedule-api/adapters/out/domain/entities"
