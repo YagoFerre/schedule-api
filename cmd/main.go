@@ -19,8 +19,6 @@ func main() {
 		fmt.Printf("Erro ao conectar com o PostgreSQL: %v", err)
 	}
 
-	panic(db)
-
 	agendamentoController := initDependencies(db)
 
 	router := gin.Default()
