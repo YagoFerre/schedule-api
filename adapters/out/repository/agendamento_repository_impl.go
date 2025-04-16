@@ -41,13 +41,19 @@ func (r *agendamentoRepository) FindById(id uint) (*model.AgendamentoModel, *res
 }
 
 func (r *agendamentoRepository) Update(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
-	result := r.database.Model(agendamentoModel).Updates(agendamentoModel)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, rest_errors.NewNotFoundError("Agendamento não encontrado")
-	}
-	if result.Error != nil {
-		return nil, rest_errors.NewBadRequestError("Erro ao atualizar agendamento")
+	var existing model.AgendamentoModel
+	if err := r.database.First(&existing, agendamentoModel.ID).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, rest_errors.NewNotFoundError("Agendamento não encontrado")
+		}
+		return nil, rest_errors.NewInternalServerError("Erro ao buscar agendamento no banco")
 	}
 
-	return agendamentoModel, nil
+	existing.StatusNotificacao = model.Cancelado
+
+	if err := r.database.Save(&existing).Error; err != nil {
+		return nil, rest_errors.NewInternalServerError("Erro ao atualizar agendamento")
+	}
+
+	return &existing, nil
 }

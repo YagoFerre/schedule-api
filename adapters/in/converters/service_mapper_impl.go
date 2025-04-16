@@ -38,6 +38,7 @@ func (s *serviceMapper) HandleMapperCancelarEnvioNotificacao(id uint) (*entities
 	}
 
 	agendamentoEntity := mapper.ConvertModelToEntity(result)
+
 	return &agendamentoEntity, nil
 }
 

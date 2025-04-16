@@ -11,3 +11,7 @@ type AgendamentoModel struct {
 	Mensagem            string
 	StatusNotificacao   StatusModel
 }
+
+func (AgendamentoModel) TableName() string {
+	return "agendamento_entities"
+}

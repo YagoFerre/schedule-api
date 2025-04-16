@@ -11,5 +11,5 @@ type AgendamentoEntity struct {
 	DataHoraAgendamento time.Time `json:"dataHoraAgendamento" gorm:"autoCreateTime"`
 	DataHoraModificacao time.Time `json:"dataHoraModificacao" gorm:"autoUpdateTime"`
 	Mensagem            string    `json:"mensagem"`
-	StatusNotificacao   Status    `json:"statusNotificacao" gorm:"type:status"`
+	StatusNotificacao   Status    `json:"statusNotificacao" gorm:"type:text"`
 }

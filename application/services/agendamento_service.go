@@ -19,6 +19,7 @@ type agendamentoService struct {
 }
 
 func (as *agendamentoService) ExecuteAgendarEnvioNotificacao(agendamentoModel *model.AgendamentoModel) (*model.AgendamentoModel, *rest_errors.RestErr) {
+	agendamentoModel.StatusNotificacao = model.Agendado
 	return as.agendamentoRepository.Create(agendamentoModel)
 }
 
